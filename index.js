@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const response = await fetch("https://example.com")
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
