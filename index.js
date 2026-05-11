@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
@@ -62,7 +63,34 @@ app.get("/logout", (req, res) => {
   req.logout(() => {});
   res.redirect("/");
 });
+app.get("/guilds", async (req, res) => {
+  if (!req.user) return res.status(401).json([]);
 
+  try {
+    const fetch = require("node-fetch");
+
+    const response = await fetch("https://discord.com/api/users/@me/guilds", {
+      headers: {
+        Authorization: `Bearer ${req.user.accessToken}`
+      }
+    });
+
+    const guilds = await response.json();
+    res.json(guilds);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json([]);
+  }
+});
+  app.get("/dashboard/:id", (req, res) => {
+  if (!req.user) return res.redirect("/");
+
+  res.render("guild", {
+    user: req.user,
+    guildId: req.params.id
+  });
+});
 app.listen(process.env.PORT || 3000, () => {
   console.log("Dashboard running...");
 });
