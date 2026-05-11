@@ -1,4 +1,3 @@
-const response = await fetch("https://example.com")
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
@@ -29,9 +28,9 @@ passport.use(new DiscordStrategy({
   scope: ["identify", "guilds"]
 },
 (accessToken, refreshToken, profile, done) => {
+  profile.accessToken = accessToken;
   return done(null, profile);
-}));
-
+}           
 // Home
 app.get("/", (req, res) => {
   res.render("index", { user: req.user });
