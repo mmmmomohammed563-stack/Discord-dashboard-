@@ -14,11 +14,8 @@ body {
   padding: 12px 20px;
   background: #5865F2;
   color: white;
-  border: none;
   border-radius: 10px;
   text-decoration: none;
-  display: inline-block;
-  margin-top: 20px;
 }
 
 .card {
