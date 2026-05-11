@@ -30,7 +30,7 @@ passport.use(new DiscordStrategy({
 (accessToken, refreshToken, profile, done) => {
   profile.accessToken = accessToken;
   return done(null, profile);
-}           
+}));
 // Home
 app.get("/", (req, res) => {
   res.render("index", { user: req.user });
